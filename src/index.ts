@@ -10,17 +10,29 @@ import { rasterize } from "./software-render/rasterizer";
 
 
 
-export type FragmentShader = (
+export  type FragmentShader = (
 
-                point: [number, number], 
-                uniforms: number[], 
-                varyings: Record<string, number[]>
+                point:      [number, number], 
+                uniforms:   number[], 
+                varyings:   Record<string, number[]>
 
-            ) => number[];
+        ) => [number, number, number, number];
+
+
+
+export  type VertexShader = (
+
+                vertex:     [number, number, number], 
+                attributes: number[], 
+                uniforms:   number[],
+                varyings:   Record<string, number[]>
+
+        ) => [number, number, number];
+
 
 
 let builtin_makeBuffer = new BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
-    function (scope: any, jsScope: any, mode: number, width, height) {
+    function (scope: any, jsScope: any, mode: number, width: number, height: number) {
     let elems = [];
     
     for (let y = 0; y < height; y++) {

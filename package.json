@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/540i/meta-gl.git"
+    "url": "git+https://github.com/EXG4/meta.gl.git"
   },
   "keywords": [
     "isomorphic",
@@ -25,13 +25,13 @@
   "author": "Jeremy Evans",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/540i/meta-gl/issues"
+    "url": "https://github.com/EXG4/meta.gl/issues"
   },
-  "homepage": "https://github.com/540i/meta-gl#readme",
+  "homepage": "https://github.com/EXG4/meta.gl/#readme",
   "devDependencies": {
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "wrapt.co_re": "file:../../../Language/wrapt.co_re"
+    "wrapt.co_re": "file:../../../Language/wrapt.co-re"
   }
 }

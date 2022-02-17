@@ -1,7 +1,8 @@
-import { ObjectType } from "wrapt.co_re/src/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject, StringObject } from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { distance2d } from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/util/1_ubiquitous-util";
-import { FragmentShader } from "..";
+import { ObjectType }                           from "wrapt.co_re/src/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { BuiltinFunctionObject, StringObject }  from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { distance2d }                           from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/util/1_ubiquitous-util";
+
+import { VertexShader } from "..";
 import { ColorRendererFactory } from "../color";
 
 
@@ -47,13 +48,18 @@ function interpolateVaryings(
 
 
 export const shadeVertices = new BuiltinFunctionObject("shadeVertices", [ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.HASH, ObjectType.FUNCTION], 
-    function (_, _2, _3, vertexShader, vertices, uniforms, attributes = []) {
+    function (
+        _: unknown, _2: unknown, vertexShader: VertexShader, 
+        vertices: [number, number, number][], 
+        uniforms: number[],         
+        attributes = []
+    ) {
         let varyings = [];
 
         for (let v in vertices) {
             let varying = {};
 
-            vertices[v] = vertexShader(vertices[v], attributes, uniforms, varying).slice(0, 2);
+            vertices[v] = vertexShader(vertices[v], attributes, uniforms, varying).slice(0, 2) as [number, number, number];
             varyings.push(varying);
         }
         return {
@@ -64,7 +70,7 @@ export const shadeVertices = new BuiltinFunctionObject("shadeVertices", [ObjectT
 
 export const blit = new BuiltinFunctionObject(
     "blit", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
-    function (_, _2, RASTER_MODE, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
+    function (_: unknown, _2: unknown, RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
         let out = "";
 
         if (0 == RASTER_MODE) {

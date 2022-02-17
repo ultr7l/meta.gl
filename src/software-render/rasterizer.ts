@@ -1,20 +1,23 @@
 import { ObjectType }            from "wrapt.co_re/src/Domain [╍🌐╍🧭╍]/object/object-type.enum";
 import { BuiltinFunctionObject } from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+
 import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PIXEL_BLOCK_SIZE } from ".";
-import { FragmentShader } from "..";
-import { assemblShape } from "./shape-assembler";
+import { FragmentShader }   from "..";
+import { assemblShape }     from "./shape-assembler";
 import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection";
 
+
 export function drawPixel(
-                    type:           number, 
-                    x:              number, 
-                    y:              number, 
+                    type:               number, 
+                    x:                  number, 
+                    y:                  number, 
                     
-                    width:          number,
-                    color:         [number, number, number, number], 
+                    width:              number,
+                    color:              [number, number, number, number], 
                     
-                    frameBuffer:       number[],
-                    stringFrameBuffer: string[][],  ) 
+                    frameBuffer:        number[],
+                    stringFrameBuffer:  string[][],  
+) 
 {
     switch (type) {
         case 0:
@@ -34,13 +37,26 @@ export function drawPixel(
     }
 }
 
+
 export function rasterizeBlock(
-    type: number,  
-    topLeft:     [number, number],  bottom:             number,     end:      number, width: number,
-    frameBuffer: number[],          stringFrameBuffer:  string[][],  
-    vertices:    number[][],        topology:           number, 
-    fragmentShader: FragmentShader, uniforms:           number[],   varyings: number[]
-) {
+    type:               number,  
+
+    topLeft:            [number, number],  
+    bottom:             number,  
+    end:                number, 
+    width:              number,
+
+    frameBuffer:        number[],                  
+    stringFrameBuffer:  string[][],  
+
+    vertices:           [number, number, number][],        
+    topology:           number, 
+
+    fragmentShader:     FragmentShader, 
+    uniforms:           number[],   
+    varyings:           number[]
+) 
+{
     let l = vertices.length; // Vertex index is required to associate varyings with fragments
     let v = 0;
 
@@ -64,7 +80,7 @@ export function rasterizeBlock(
         else if (corners > 0) { // some of them are contained.
             for (let y = topLeft[1]; y < bottom; y++) {
                 for (let x = topLeft[0]; x < end; x++) {
-                    if (pointIsWithinTriangle([x, y], shape[0], shape[1], shape[2])) {
+                    if (pointIsWithinTriangle([x, y], shape[0] as [number, number], shape[1] as [number, number], shape[2] as [number, number])) {
                         //let varying = interpolateVaryings([x, y], shape, topology, v, varyings);
                         let value   = fragmentShader([x, y], uniforms, {}); //varying);
 
@@ -80,33 +96,38 @@ export function rasterizeBlock(
 // by this point, shapes and bounding boxes are identified and associated with fragment shaders
 export const rasterize = new BuiltinFunctionObject("rasterize", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.ARRAY], 
     function (
-        _, _2, 
-        frameBuffer: number[],             stringFrameBufer: string[][],    pixelHeight: number,
-        type: number,                      vertices: number[][],            toplogies: number[], 
-        fragmentShaders: FragmentShader[], uniforms: number[],              varyings: number[]
+        _: unknown, _2: unknown, 
+        frameBuffer:        number[],              
+        stringFrameBufer:   string[][],    
+        pixelHeight:        number,                
+        vertices:           [number, number, number][],            
+        toplogies:          number[], 
+        fragmentShaders:    FragmentShader[], 
+        uniforms:           number[],              
+        varyings:           number[]
 ) {
     let cols, rows;
 
-    if (type == 0) {
+    if (frameBuffer) {
         let width = frameBuffer.length / pixelHeight;
 
         cols = Math.ceil(width / PIXEL_BLOCK_SIZE);
         rows = Math.ceil(pixelHeight / PIXEL_BLOCK_SIZE);
     } else {
-        cols = Math.ceil(frameBuffer[0].length / ASCII_BLOCK_SIZE);
-        rows = Math.ceil(frameBuffer.length / ASCII_BLOCK_SIZE);
+        cols = Math.ceil(stringFrameBufer[0].length / ASCII_BLOCK_SIZE);
+        rows = Math.ceil(stringFrameBufer.length / ASCII_BLOCK_SIZE);
     }
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             // how many corners of this block are inside the triangle?
-            const blockSize = (type ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE);
+            const blockSize = (!stringFrameBufer ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE);
             let topLeft: [number, number] = [c * blockSize, r * blockSize];
             let bottom                    = topLeft[1] + blockSize;
             let end                       = topLeft[0] + blockSize;
 
             rasterizeBlock(
-                type, topLeft, bottom, end, blockSize,
+                !!frameBuffer ? 0 : 1, topLeft, bottom, end, blockSize,
                 frameBuffer, stringFrameBufer, 
                 vertices, toplogies[0], 
                 fragmentShaders[0], uniforms, varyings, 
