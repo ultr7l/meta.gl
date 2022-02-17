@@ -1,0 +1,37 @@
+{
+  "name": "meta.gl",
+  "version": "0.0.1",
+  "description": "Hardware accelerated graphics language and transpiler",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/540i/meta-gl.git"
+  },
+  "keywords": [
+    "isomorphic",
+    "3d",
+    "graphics",
+    "rendering",
+    "language",
+    "shader",
+    "pipeline",
+    "transpiler",
+    "glsl",
+    "opengl"
+  ],
+  "author": "Jeremy Evans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/540i/meta-gl/issues"
+  },
+  "homepage": "https://github.com/540i/meta-gl#readme",
+  "devDependencies": {
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "wrapt.co_re": "file:../../../Language/wrapt.co_re"
+  }
+}
