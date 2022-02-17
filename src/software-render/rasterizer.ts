@@ -64,7 +64,7 @@ export function rasterizeBlock(
         let shape = assemblShape(topology, v, vertices);
         // check 4 corners of block against each shape:
         // TODO: FIRST, check if the bounding box of the shape overlaps this block
-        let corners = triangleOverlapsSquare(topLeft, type ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE, shape[0], shape[1], shape[2]);
+        let corners = triangleOverlapsSquare(topLeft, type ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE, shape[0] as [number, number], shape[1] as [number, number], shape[2] as [number, number]);
 
         if (corners == 4) { // are all four corners inside of the triangle?
             for (let y = topLeft[1]; y < bottom; y++) {
