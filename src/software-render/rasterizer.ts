@@ -33,7 +33,11 @@ export function drawPixel(
             stringFrameBuffer[y][x] = colorRenderer(color, ASCII.Value[Math.floor(((color[0] + color[1] + color[2]) / 3) * 14) % 14]);
             break;
         case 3:
-            stringFrameBuffer[y][x] = colorRenderer(color, "█");
+            
+            stringFrameBuffer[y][x] = colorRenderer(
+                color, 
+                "-░▒█".charAt(Math.floor(color[3] * 3))
+            );
     }
 }
 
