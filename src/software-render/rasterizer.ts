@@ -37,6 +37,7 @@ export function drawPixel(
                 color, 
                 " ░▒█".charAt(Math.floor(color[3] * 4))
             );
+            break;
         case 4:    
             stringFrameBuffer[y][x] = colorRenderer(
                 color, 
