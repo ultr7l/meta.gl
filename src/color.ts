@@ -45,7 +45,7 @@ function renderHTMLColor(color: [number, number, number, number], str: string ) 
 export class ColorRendererFactory {
     
     public static get() {
-        if (typeof Window != 'undefined') {
+        if (eval('typeof Window') != 'undefined') {
             return renderHTMLColor;
         }
         return render8BitColor;
