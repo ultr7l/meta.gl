@@ -1,14 +1,20 @@
 {
   "name": "meta.gl",
   "version": "0.0.2",
-  "description": "Hardware accelerated graphics language and transpiler",
-  "main": "index.js",
+  "description": "Hardware accelerated graphics language and un-parser",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc -p config/tsconfig.esm.json && tsc -p config/tsconfig.cjs.json",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EXG4/meta.gl.git"
+    "url": "git+https://github.com/ultr7l/meta.gl.git"
   },
   "keywords": [
     "isomorphic",
@@ -25,10 +31,13 @@
   "author": "Jeremy Evans",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EXG4/meta.gl/issues"
+    "url": "https://github.com/ultr7l/meta.gl/issues"
   },
-  "homepage": "https://github.com/EXG4/meta.gl/#readme",
+  "homepage": "https://github.com/ultr7l/meta.gl/#readme",
   "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
     "typescript": "^4.5.2"
   },
   "dependencies": {
