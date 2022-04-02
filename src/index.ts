@@ -1,7 +1,7 @@
 
-import { ObjectType }                           from "wrapt.co_re/src/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject }                from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { ObjectType }                           from "wrapt.co_re/lib/esm/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { BuiltinFunctionObject }                from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
  
 import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";

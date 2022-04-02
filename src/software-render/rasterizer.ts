@@ -1,5 +1,5 @@
-import { ObjectType }            from "wrapt.co_re/src/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject } from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { ObjectType }            from "wrapt.co_re/lib/esm/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { BuiltinFunctionObject } from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
 
 import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PIXEL_BLOCK_SIZE } from ".";
 import { FragmentShader }   from "..";

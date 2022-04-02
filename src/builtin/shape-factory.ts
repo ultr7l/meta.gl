@@ -1,6 +1,6 @@
-import { ArrayObject }              from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { numberArrayToFloatArray }  from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/util/3_0_object-util";
-import { makeBuiltinHashmap }       from "wrapt.co_re/src/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { ArrayObject }              from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { numberArrayToFloatArray }  from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/util/3_0_object-util";
+import { makeBuiltinHashmap }       from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
 
 let triangleListCube = [
     // back-left

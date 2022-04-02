@@ -1,6 +1,6 @@
 {
   "name": "meta.gl",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Hardware accelerated graphics language and un-parser",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
