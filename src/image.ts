@@ -1,5 +1,5 @@
-import { BuiltinFunctionObject } from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { makeBuiltinClass }      from "wrapt.co_re/lib/esm/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { BuiltinFunctionObject } from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { makeBuiltinClass }      from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
 
 
 export const ImageObject = makeBuiltinClass("Image", [], [
