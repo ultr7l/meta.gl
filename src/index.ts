@@ -5,6 +5,7 @@ import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/lib/Model [╍
  
 import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";
+import { systemColorRenderer } from "./color";
 import { ASCII, blit, shadeVertices } from "./software-render";
 import { rasterize } from "./software-render/rasterizer";
 
@@ -60,6 +61,10 @@ let SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] //, "TRIANGLE_STRIP", "
 
 let BLEND_MODE = makeBuiltinEnum(["ADD", "SUBTRACT", "MULTIPLY", "NONE"]);
 let RASTER_MODE = makeBuiltinEnum(["PIXEL", "ASCII", "ANSI_COLOR", "ANSI_SOLID_COLOR"]);
+
+
+export { systemColorRenderer } from "./color";
+export { ImageObject }         from "./image";
 
 export const Graphics = makeBuiltinHashmap([
     ["SURFACE_TOPOLOGY", SURFACE_TOPOLOGY],
