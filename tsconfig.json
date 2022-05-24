@@ -16,11 +16,7 @@
         "node",
         "jest"
       ],
-      "rootDir": "../src",
-      "outDir":  "../lib"
-    },
-    "include": [
-      "../src/*",
-      "../src/**/*"
-    ]
+      "rootDir": "src",
+      "outDir":  "lib"
+    }
   }
