@@ -4,7 +4,7 @@
   "description": "Hardware accelerated graphics language and un-parser",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p config/tsconfig.json",
+    "build": "tsc",
     "prepublish": "npm run build"
   },
   "repository": {
