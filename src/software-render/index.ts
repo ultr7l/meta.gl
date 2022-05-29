@@ -1,7 +1,6 @@
 import { ObjectType }                           from "wrapt.co_re/lib/Domain [╍🌐╍🧭╍]/object/object-type.enum";
 import { BuiltinFunctionObject, StringObject }  from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { distance2d }                           from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/util/1_ubiquitous-util";
-
+import { distance2d }                           from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util";
 import { VertexShader } from "..";
 import { ColorRendererFactory } from "../color";
 
