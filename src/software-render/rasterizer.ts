@@ -1,8 +1,8 @@
-import { ObjectType }            from "wrapt.co_re/lib/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject } from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
+import { ObjectType }            from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
 
 import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PIXEL_BLOCK_SIZE } from ".";
-import { FragmentShader }   from "..";
+import { FragmentShader }   from "src/index";
 import { assemblShape }     from "./shape-assembler";
 import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection";
 
@@ -103,7 +103,7 @@ export function rasterizeBlock(
     }
 }
 // by this point, shapes and bounding boxes are identified and associated with fragment shaders
-export const rasterize = new BuiltinFunctionObject("rasterize", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.ARRAY], 
+export const rasterize = new _BuiltinFunctionObject("rasterize", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.ARRAY], 
     function (
         _: unknown, _2: unknown, 
         frameBuffer:        number[],              

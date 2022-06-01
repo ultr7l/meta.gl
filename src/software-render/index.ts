@@ -1,6 +1,6 @@
-import { ObjectType }                           from "wrapt.co_re/lib/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject, StringObject }  from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { distance2d }                           from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util";
+import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { _BuiltinFunctionObject, StringObject }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
+import { distance2d }                           from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util";
 import { VertexShader } from "..";
 import { ColorRendererFactory } from "../color";
 
@@ -46,7 +46,7 @@ function interpolateVaryings(
 }
 
 
-export const shadeVertices = new BuiltinFunctionObject("shadeVertices", [ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.HASH, ObjectType.FUNCTION], 
+export const shadeVertices = new _BuiltinFunctionObject("shadeVertices", [ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.HASH, ObjectType.FUNCTION], 
     function (
         _: unknown, _2: unknown, vertexShader: VertexShader, 
         vertices: [number, number, number][], 
@@ -67,7 +67,7 @@ export const shadeVertices = new BuiltinFunctionObject("shadeVertices", [ObjectT
         };
 });
 
-export const blit = new BuiltinFunctionObject(
+export const blit = new _BuiltinFunctionObject(
     "blit", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
     function (_: unknown, _2: unknown, RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
         let out = "";

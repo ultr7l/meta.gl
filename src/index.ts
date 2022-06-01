@@ -1,7 +1,7 @@
 
-import { ObjectType }                           from "wrapt.co_re/lib/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { BuiltinFunctionObject }                from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
+import { _BuiltinFunctionObject }                from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
+import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
  
 import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";
@@ -32,7 +32,7 @@ export  type VertexShader = (
 
 
 
-let builtin_makeBuffer = new BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
+let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
     function (scope: any, jsScope: any, mode: number, width: number, height: number) {
     let elems = [];
     
