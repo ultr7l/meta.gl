@@ -64,7 +64,7 @@ export let builtin_makeBuffer = new _BuiltinFunctionObject(
 
 const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP", "TRIANGLE_FAN", "QUAD"] */ );
 const BLEND_MODE  = ["ADD", "SUBTRACT", "MULTIPLY", "NONE"];
-const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "ANSI_SOLID_COLOR"];
+const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "UNICODE_RGBA", "UNICODE_RGBA_HDR"];
 
 export { ImageObject }         from "./image";
 export const Graphics = makeBuiltinHashmap([
@@ -82,6 +82,7 @@ export const Graphics = makeBuiltinHashmap([
 
 
 export { systemColorRenderer } from "./color";
+
 export const Graphics_TS = {
     SURFACE_TOPOLOGY,
     BLEND_MODE,

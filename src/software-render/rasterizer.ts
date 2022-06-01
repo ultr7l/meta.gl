@@ -7,8 +7,18 @@ import { assemblShape }     from "./shape-assembler";
 import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection";
 
 
+export enum RASTER_MODE__ORDINAL {
+    "PIXEL"             = 0, 
+    
+    "ASCII"             = 1, 
+     
+    "ANSI_SOLID_COLOR"  = 2, 
+    "UNICODE_RGBA"      = 3, 
+    "UNICODE_RGBA_HDR"  = 4
+}
+
 export function drawPixel(
-                    type:               number, 
+                    type:               RASTER_MODE__ORDINAL, 
                     x:                  number, 
                     y:                  number, 
                     
