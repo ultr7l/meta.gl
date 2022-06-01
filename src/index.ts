@@ -6,7 +6,7 @@ import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [â•
 import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";
 import { systemColorRenderer } from "./color";
-import { ASCII, blit, shadeVertices } from "./software-render";
+import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render";
 import { rasterize } from "./software-render/rasterizer";
 
 
@@ -31,9 +31,7 @@ export  type VertexShader = (
         ) => [number, number, number];
 
 
-
-export let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
-    function (scope: any, jsScope: any, mode: number, width: number, height: number) {
+function makeBuffer(mode: number, width: number, height: number) {
     let elems = [];
     
     for (let y = 0; y < height; y++) {
@@ -51,7 +49,17 @@ export let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [Object
         }
     }
     return elems;
-}, undefined, undefined, undefined);
+}
+
+export let builtin_makeBuffer = new _BuiltinFunctionObject(
+    "makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
+    (
+        scope: any, jsScope: any, 
+        mode: number, width: number, height: number
+    ) => makeBuffer(mode, width, height),
+    
+    undefined, undefined, undefined
+);
 
 
 const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP", "TRIANGLE_FAN", "QUAD"] */ );
@@ -67,9 +75,9 @@ export const Graphics = makeBuiltinHashmap([
     ["SHAPE", Shape],
     ["Shaders", Shaders],
     ["makeBuffer", builtin_makeBuffer],
-    ["shadeVertices", shadeVertices],
+    ["shadeVertices", builtin_shadeVertices],
     ["rasterize", rasterize],
-    ["blit", blit]
+    ["blit", builtin_blit]
 ]);
 
 
@@ -81,7 +89,7 @@ export const Graphics_TS = {
     ASCII,
     Shape,
     Shaders,
-    builtin_makeBuffer,
+    makeBuffer,
     shadeVertices,
     rasterize,
     blit

@@ -8,7 +8,15 @@ import { ColorRendererFactory } from "../color";
 
 export const PIXEL_BLOCK_SIZE   =     16;
 export const ASCII_BLOCK_SIZE   =      8;
-export const ASCII              = new  StringObject(" .`,-_*x=/|FXH$#@");
+
+export const PALLET_ASCII       =     " .`,-_*x=/|FXH$#@";
+export const PALLET_UNICODE     =     "   ░░░▒▒▒▒███";
+export const PALLET_UNICODE_HDR =     " ░░░░░░░▒▒▒██";
+
+export const ASCII              = new StringObject(PALLET_ASCII);
+export const UNICODE            = new StringObject(PALLET_UNICODE);
+export const UNICODE_HDR        = new StringObject(PALLET_UNICODE_HDR);
+
 export const colorRenderer      =             ColorRendererFactory.get();
 
 
@@ -46,54 +54,71 @@ function interpolateVaryings(
 }
 
 
-export const shadeVertices = new _BuiltinFunctionObject("shadeVertices", [ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.HASH, ObjectType.FUNCTION], 
-    function (
-        _: unknown, _2: unknown, vertexShader: VertexShader, 
+export function shadeVertices(
+    vertexShader: VertexShader, 
+    vertices: [number, number, number][], 
+    uniforms: number[],         
+    attributes = []
+) {
+    let varyings = [];
+
+    for (let v in vertices) {
+        let varying = {};
+
+        vertices[v] = vertexShader(vertices[v], attributes, uniforms, varying).slice(0, 2) as [number, number, number];
+        varyings.push(varying);
+    }
+    return {
+        varyings: varyings,
+        vertices: vertices
+    };
+}
+
+export const builtin_shadeVertices = new _BuiltinFunctionObject(
+    "shadeVertices", [ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.HASH, ObjectType.FUNCTION], 
+    (
+        _: unknown, _2: unknown, 
+        vertexShader: VertexShader, 
         vertices: [number, number, number][], 
         uniforms: number[],         
         attributes = []
-    ) {
-        let varyings = [];
+    ) => shadeVertices(vertexShader, vertices, uniforms, attributes)
+);
 
-        for (let v in vertices) {
-            let varying = {};
+export function blit(RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
+    let out = "";
 
-            vertices[v] = vertexShader(vertices[v], attributes, uniforms, varying).slice(0, 2) as [number, number, number];
-            varyings.push(varying);
+    if (0 == RASTER_MODE) {
+        let w = width * 3, h = frameBuffer.length / w;
+
+        for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x += 3) {
+                let idx = y * width + x,
+                    value: [number, number, number, number] = [
+                        frameBuffer[idx], 
+                        frameBuffer[idx + 1], 
+                        frameBuffer[idx + 2], 
+                        1                       //TODO: Support opacity
+                    ];
+
+                out += colorRenderer(value, "█");
+            }
+            out += "\n";
         }
-        return {
-            varyings: varyings,
-            vertices: vertices
-        };
-});
+    } else {
 
-export const blit = new _BuiltinFunctionObject(
+        for (let x in stringFrameBufer) {
+            out += stringFrameBufer[x].join("") + "\n";
+        }
+    }
+    return out;
+}
+
+export const builtin_blit = new _BuiltinFunctionObject(
     "blit", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
-    function (_: unknown, _2: unknown, RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
-        let out = "";
-
-        if (0 == RASTER_MODE) {
-            let w = width * 3, h = frameBuffer.length / w;
-
-            for (let y = 0; y < h; y++) {
-                for (let x = 0; x < w; x += 3) {
-                    let idx = y * width + x,
-                        value: [number, number, number, number] = [
-                            frameBuffer[idx], 
-                            frameBuffer[idx + 1], 
-                            frameBuffer[idx + 2], 
-                            1                       //TODO: Support opacity
-                        ];
-
-                    out += colorRenderer(value, "█");
-                }
-                out += "\n";
-            }
-        } else {
-
-            for (let x in stringFrameBufer) {
-                out += stringFrameBufer[x].join("") + "\n";
-            }
-        }
-        return out;
-});
+    (
+        _: unknown, _2: unknown,
+        RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number 
+        
+    ) => blit(RASTER_MODE, frameBuffer, stringFrameBufer, width) 
+);

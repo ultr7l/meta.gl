@@ -1,7 +1,7 @@
 import { ObjectType }            from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
 import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
 
-import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PIXEL_BLOCK_SIZE } from ".";
+import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PALLET_UNICODE, PALLET_UNICODE_HDR, PIXEL_BLOCK_SIZE, UNICODE } from ".";
 import { FragmentShader }   from "src/index";
 import { assemblShape }     from "./shape-assembler";
 import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection";
@@ -35,13 +35,13 @@ export function drawPixel(
         case 3:
             stringFrameBuffer[y][x] = colorRenderer(
                 color, 
-                " ░▒█".charAt(Math.floor(color[3] * 4))
+                PALLET_UNICODE.charAt(Math.floor(color[3] * 12))
             );
             break;
         case 4:    
             stringFrameBuffer[y][x] = colorRenderer(
                 color, 
-                " ░░░░░░░▒▒▒██".charAt(Math.floor(color[3] * 12))
+                PALLET_UNICODE_HDR.charAt(Math.floor(color[3] * 12))
             );
     }
 }
