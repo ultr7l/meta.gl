@@ -32,7 +32,7 @@ export  type VertexShader = (
 
 
 
-let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
+export let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
     function (scope: any, jsScope: any, mode: number, width: number, height: number) {
     let elems = [];
     
@@ -54,22 +54,15 @@ let builtin_makeBuffer = new _BuiltinFunctionObject("makeBuffer", [ObjectType.IN
 }, undefined, undefined, undefined);
 
 
+const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP", "TRIANGLE_FAN", "QUAD"] */ );
+const BLEND_MODE  = ["ADD", "SUBTRACT", "MULTIPLY", "NONE"];
+const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "ANSI_SOLID_COLOR"];
 
-
-let SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] //, "TRIANGLE_STRIP", "TRIANGLE_FAN", "QUAD"]
-);
-
-let BLEND_MODE = makeBuiltinEnum(["ADD", "SUBTRACT", "MULTIPLY", "NONE"]);
-let RASTER_MODE = makeBuiltinEnum(["PIXEL", "ASCII", "ANSI_COLOR", "ANSI_SOLID_COLOR"]);
-
-
-export { systemColorRenderer } from "./color";
 export { ImageObject }         from "./image";
-
 export const Graphics = makeBuiltinHashmap([
     ["SURFACE_TOPOLOGY", SURFACE_TOPOLOGY],
-    ["BLEND_MODE", BLEND_MODE],
-    ["RASTER_MODE", RASTER_MODE],
+    ["BLEND_MODE", makeBuiltinEnum(BLEND_MODE)],
+    ["RASTER_MODE", makeBuiltinEnum(RASTER_MODE)],
     ["ASCII", ASCII],
     ["SHAPE", Shape],
     ["Shaders", Shaders],
@@ -78,3 +71,18 @@ export const Graphics = makeBuiltinHashmap([
     ["rasterize", rasterize],
     ["blit", blit]
 ]);
+
+
+export { systemColorRenderer } from "./color";
+export const Graphics_TS = {
+    SURFACE_TOPOLOGY,
+    BLEND_MODE,
+    RASTER_MODE,
+    ASCII,
+    Shape,
+    Shaders,
+    builtin_makeBuffer,
+    shadeVertices,
+    rasterize,
+    blit
+}
