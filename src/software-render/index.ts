@@ -2,7 +2,7 @@ import { ObjectType }                           from "wrapt.co_re/dist/Domain [�
 import { _BuiltinFunctionObject, StringObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
 import { distance2d }                           from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util.js";
 import { VertexShader } from "..";
-import { ColorRendererFactory } from "../color";
+import { ColorRendererFactory } from "../color.js";
 
 
 
