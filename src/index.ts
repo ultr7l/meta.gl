@@ -3,11 +3,11 @@ import { ObjectType }                           from "wrapt.co_re/dist/Domain [�
 import { _BuiltinFunctionObject }                from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
 import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util.js";
  
-import { Shaders }  from "./builtin/shader-factory";
-import { Shape }    from "./builtin/shape-factory";
-import { systemColorRenderer } from "./color";
-import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render";
-import { builtin_rasterize, rasterize } from "./software-render/rasterizer";
+import { Shaders }  from "./builtin/shader-factory.js";
+import { Shape }    from "./builtin/shape-factory.js";
+import { systemColorRenderer } from "./color.js";
+import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render/index.js";
+import { builtin_rasterize, rasterize } from "./software-render/rasterizer.js";
 
 
 
