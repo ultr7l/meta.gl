@@ -1,6 +1,6 @@
-import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { _BuiltinFunctionObject, StringObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
-import { distance2d }                           from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util";
+import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum.js";
+import { _BuiltinFunctionObject, StringObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
+import { distance2d }                           from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util.js";
 import { VertexShader } from "..";
 import { ColorRendererFactory } from "../color";
 
