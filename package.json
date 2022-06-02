@@ -37,6 +37,6 @@
         "typescript": "^4.5.2"
     },
     "dependencies": {
-        "wrapt.co_re": "^1.1.22"
+        "wrapt.co_re": "^1.1.23"
     }
 }
