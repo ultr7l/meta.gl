@@ -1,6 +1,7 @@
 {
     "name": "meta.gl",
-    "version": "0.1.5",
+    "version": "0.1.6",
+    "type": "module",
     "description": "Hardware accelerated graphics language and un-parser",
     "scripts": {
         "test": "jest",
@@ -36,6 +37,6 @@
         "typescript": "^4.5.2"
     },
     "dependencies": {
-        "wrapt.co_re": "^1.1.17"
+        "wrapt.co_re": "^1.1.19"
     }
 }

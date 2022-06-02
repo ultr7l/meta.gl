@@ -7,7 +7,7 @@ import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";
 import { systemColorRenderer } from "./color";
 import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render";
-import { rasterize } from "./software-render/rasterizer";
+import { builtin_rasterize, rasterize } from "./software-render/rasterizer";
 
 
 
@@ -76,7 +76,7 @@ export const Graphics = makeBuiltinHashmap([
     ["Shaders", Shaders],
     ["makeBuffer", builtin_makeBuffer],
     ["shadeVertices", builtin_shadeVertices],
-    ["rasterize", rasterize],
+    ["rasterize", builtin_rasterize],
     ["blit", builtin_blit]
 ]);
 

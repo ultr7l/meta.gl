@@ -112,9 +112,53 @@ export function rasterizeBlock(
         v += 3;
     }
 }
+
+export function rasterize(
+    frameBuffer:        number[],              
+    stringFrameBufer:   string[][],    
+    pixelHeight:        number,                
+    vertices:           [number, number, number][],            
+    toplogies:          number[], 
+    fragmentShaders:    FragmentShader[], 
+    uniforms:           number[],              
+    varyings:           number[]
+) {
+let cols, rows;
+
+if (frameBuffer) {
+    let width = frameBuffer.length / pixelHeight;
+
+    cols = Math.ceil(width / PIXEL_BLOCK_SIZE);
+    rows = Math.ceil(pixelHeight / PIXEL_BLOCK_SIZE);
+} else {
+    cols = Math.ceil(stringFrameBufer[0].length / ASCII_BLOCK_SIZE);
+    rows = Math.ceil(stringFrameBufer.length / ASCII_BLOCK_SIZE);
+}
+
+for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+        // how many corners of this block are inside the triangle?
+        const blockSize = (!stringFrameBufer ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE);
+        let topLeft: [number, number] = [c * blockSize, r * blockSize];
+        let bottom                    = topLeft[1] + blockSize;
+        let end                       = topLeft[0] + blockSize;
+
+        rasterizeBlock(
+            !!frameBuffer ? 0 : 1, topLeft, bottom, end, blockSize,
+            frameBuffer, stringFrameBufer, 
+            vertices, toplogies[0], 
+            fragmentShaders[0], uniforms, varyings, 
+        );
+    }
+}
+
+return frameBuffer; // crucial to return this. Otherwise, the reference could be lost across runtime environments
+}
+
 // by this point, shapes and bounding boxes are identified and associated with fragment shaders
-export const rasterize = new _BuiltinFunctionObject("rasterize", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.ARRAY], 
-    function (
+export const builtin_rasterize = new _BuiltinFunctionObject(
+    "rasterize", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.ARRAY, ObjectType.ARRAY, ObjectType.ARRAY], 
+    (
         _: unknown, _2: unknown, 
         frameBuffer:        number[],              
         stringFrameBufer:   string[][],    
@@ -124,35 +168,5 @@ export const rasterize = new _BuiltinFunctionObject("rasterize", [ObjectType.ARR
         fragmentShaders:    FragmentShader[], 
         uniforms:           number[],              
         varyings:           number[]
-) {
-    let cols, rows;
-
-    if (frameBuffer) {
-        let width = frameBuffer.length / pixelHeight;
-
-        cols = Math.ceil(width / PIXEL_BLOCK_SIZE);
-        rows = Math.ceil(pixelHeight / PIXEL_BLOCK_SIZE);
-    } else {
-        cols = Math.ceil(stringFrameBufer[0].length / ASCII_BLOCK_SIZE);
-        rows = Math.ceil(stringFrameBufer.length / ASCII_BLOCK_SIZE);
-    }
-
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            // how many corners of this block are inside the triangle?
-            const blockSize = (!stringFrameBufer ? ASCII_BLOCK_SIZE : PIXEL_BLOCK_SIZE);
-            let topLeft: [number, number] = [c * blockSize, r * blockSize];
-            let bottom                    = topLeft[1] + blockSize;
-            let end                       = topLeft[0] + blockSize;
-
-            rasterizeBlock(
-                !!frameBuffer ? 0 : 1, topLeft, bottom, end, blockSize,
-                frameBuffer, stringFrameBufer, 
-                vertices, toplogies[0], 
-                fragmentShaders[0], uniforms, varyings, 
-            );
-        }
-    }
-
-    return frameBuffer; // crucial to return this. Otherwise, the reference could be lost across runtime environments
-});
+    ) => rasterize(frameBuffer, stringFrameBufer, pixelHeight, vertices, toplogies, fragmentShaders, uniforms, varyings) 
+);
