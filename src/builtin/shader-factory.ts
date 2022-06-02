@@ -1,4 +1,4 @@
-import { makeBuiltinHashmap } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { makeBuiltinHashmap } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util.js";
 
 export const Shaders = makeBuiltinHashmap([
     ["VERTEX", makeBuiltinHashmap([
