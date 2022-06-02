@@ -85,7 +85,7 @@ export const builtin_shadeVertices = new _BuiltinFunctionObject(
     ) => shadeVertices(vertexShader, vertices, uniforms, attributes)
 );
 
-export function blit(RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number) {
+export function blit(RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: string[], width: number) {
     let out = "";
 
     if (0 == RASTER_MODE) {
@@ -108,7 +108,7 @@ export function blit(RASTER_MODE: number, frameBuffer: number[], stringFrameBufe
     } else {
 
         for (let x in stringFrameBufer) {
-            out += stringFrameBufer[x].join("") + "\n";
+            out += stringFrameBufer[x] + "\n";
         }
     }
     return out;
@@ -118,7 +118,7 @@ export const builtin_blit = new _BuiltinFunctionObject(
     "blit", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
     (
         _: unknown, _2: unknown,
-        RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: number[][], width: number 
+        RASTER_MODE: number, frameBuffer: number[], stringFrameBufer: string[], width: number 
         
     ) => blit(RASTER_MODE, frameBuffer, stringFrameBufer, width) 
 );
