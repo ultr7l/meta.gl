@@ -1,6 +1,6 @@
 {
     "name": "meta.gl",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "type": "module",
     "description": "Hardware accelerated graphics language and un-parser",
     "scripts": {

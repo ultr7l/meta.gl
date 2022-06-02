@@ -1,7 +1,7 @@
 
-import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { _BuiltinFunctionObject }                from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
-import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { ObjectType }                           from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum.js";
+import { _BuiltinFunctionObject }                from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
+import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util.js";
  
 import { Shaders }  from "./builtin/shader-factory";
 import { Shape }    from "./builtin/shape-factory";
@@ -66,7 +66,7 @@ const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP",
 const BLEND_MODE  = ["ADD", "SUBTRACT", "MULTIPLY", "NONE"];
 const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "UNICODE_RGBA", "UNICODE_RGBA_HDR"];
 
-export { ImageObject }         from "./image";
+export { ImageObject }         from "./image.js";
 export const Graphics = makeBuiltinHashmap([
     ["SURFACE_TOPOLOGY", SURFACE_TOPOLOGY],
     ["BLEND_MODE", makeBuiltinEnum(BLEND_MODE)],
@@ -81,7 +81,7 @@ export const Graphics = makeBuiltinHashmap([
 ]);
 
 
-export { systemColorRenderer } from "./color";
+export { systemColorRenderer } from "./color.js";
 
 export const Graphics_TS = {
     SURFACE_TOPOLOGY,
