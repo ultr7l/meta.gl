@@ -1,10 +1,10 @@
 import { ObjectType }            from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
 import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
 
-import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PALLET_UNICODE, PALLET_UNICODE_HDR, PIXEL_BLOCK_SIZE, UNICODE } from ".";
-import { FragmentShader }   from "src/index";
-import { assemblShape }     from "./shape-assembler";
-import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection";
+import { ASCII, ASCII_BLOCK_SIZE, colorRenderer, PALLET_UNICODE, PALLET_UNICODE_HDR, PIXEL_BLOCK_SIZE, UNICODE } from "./index.js";
+import { FragmentShader }   from "src/index.js";
+import { assemblShape }     from "./shape-assembler.js";
+import { triangleOverlapsSquare, pointIsWithinTriangle } from "./triangle-intersection.js";
 
 
 export enum RASTER_MODE__ORDINAL {
