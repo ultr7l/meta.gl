@@ -1,21 +1,21 @@
-import { BuiltinFunctionObject } from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_object";
-import { makeBuiltinClass }      from "wrapt.co_re/lib/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util";
+import { _BuiltinFunctionObject }                   from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
+import { makeBuiltinClass, _makeBuiltinClass }      from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util.js";
 
 
-export const ImageObject = makeBuiltinClass("Image", [], [
+export const ImageObject = _makeBuiltinClass("Image", [], [
 
     ["Image",          
-    new BuiltinFunctionObject("Image", [], function (_, scope) {
+    new _BuiltinFunctionObject("Image", [], function (_, scope) {
             return scope;
     }), []],
 
     ["getDimensions",  
-    new BuiltinFunctionObject("getDimensions", [], function (_, scope) {
+    new _BuiltinFunctionObject("getDimensions", [], function (_, scope) {
             return scope;
     }), []],
 
     ["getBuffer", 
-    new BuiltinFunctionObject("getBuffer", [], function (_, scope) {
+    new _BuiltinFunctionObject("getBuffer", [], function (_, scope) {
             return scope;
     }), []],
 

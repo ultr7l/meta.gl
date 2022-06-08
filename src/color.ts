@@ -17,7 +17,7 @@ function getRGB(r: number, g: number, b: number, _: number) {
     ]; 
 }
 
-function render8BitColor(vec: [number, number, number, number], str: string) {
+export function render8BitColor(vec: [number, number, number, number], str: string) {
     return  getRGB ( 
         Math.floor(Math.abs(vec[0] * 4)), 
         Math.floor(Math.abs(vec[1] * 4)), 
@@ -26,8 +26,8 @@ function render8BitColor(vec: [number, number, number, number], str: string) {
     )
     +   str;
 }
-// TODO: implement blit to canvas to avoid using this abomination:
-function renderHTMLColor(color: [number, number, number, number], str: string ) {
+// TODO: implement blit to canvas to provide a more performant alternative:
+export function renderHTMLColor(color: [number, number, number, number], str: string ) {
     return  '<span style="color: rgb('  
             +  
             [
