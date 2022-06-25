@@ -17,7 +17,7 @@ export const ASCII              = new StringObject(PALLET_ASCII);
 export const UNICODE            = new StringObject(PALLET_UNICODE);
 export const UNICODE_HDR        = new StringObject(PALLET_UNICODE_HDR);
 
-export const colorRenderer      =             ColorRendererFactory.get();
+export const colorRenderer      =     ColorRendererFactory.get();
 
 
 
