@@ -1,4 +1,5 @@
 {
-    "window.zoomLevel": 2,
-    "workbench.colorTheme": "Runic Minimal"
+    "window.zoomLevel": 3,
+    "workbench.colorTheme": "Sourlick (rainglow)",
+    "editor.lineHeight": 0.9
 }
