@@ -3,10 +3,17 @@ import { VisualMaterial } from "./visual-material.js";
 import { Concept } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/1_0_concept"
 import { _CONCEPT } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/0_1_concept.type";
 
+export interface VisualQualities {
+
+}
+
+
 /**
  * 
+ *  Visual Concept
+ * 
  */
-export class Visual extends Concept {
+export class Visual extends Concept<_CONCEPT[], VisualQualities> {
 
     id:   string;
 
@@ -19,7 +26,7 @@ export class Visual extends Concept {
                             { [name: string]: any; }>
                     ) => any 
                 }               = {};
-    qualities: { [name: string]: any; };
+    qualities: VisualQualities;
 
    
     matrix: Matrix4;
