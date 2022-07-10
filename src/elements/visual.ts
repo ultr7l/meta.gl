@@ -4,7 +4,9 @@ import { Concept } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/
 import { _CONCEPT } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/0_1_concept.type";
 
 export interface VisualQualities {
-
+    Visual: {
+        
+    } 
 }
 
 
@@ -17,7 +19,7 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
 
     id:   string;
 
-    name: string; 
+    name: string = "Visual"; 
     foundation = [] as _CONCEPT[];
     principles: { 
                     [principleName: string]: 
@@ -26,7 +28,11 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
                             { [name: string]: any; }>
                     ) => any 
                 }               = {};
-    qualities: VisualQualities;
+    qualities: VisualQualities = { 
+        Visual: {
+
+        }
+    };
 
    
     matrix: Matrix4;
@@ -40,8 +46,8 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
     
     public transform(input?: Concept<_CONCEPT[]>): Concept<_CONCEPT[]> {
 
-    
-        throw new Error("Method not implemented.");
+        return this;
+        //throw new Error("Method not implemented.");
     
     
     }
