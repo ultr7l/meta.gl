@@ -1,4 +1,4 @@
-import { FragmentShader, VertexShader } from "src";
+import { FragmentShader, VertexShader } from "src/index.js";
 import { VisualMaterialMaps } from "./visual-material-maps.js";
 
 /**
