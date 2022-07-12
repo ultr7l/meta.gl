@@ -5,9 +5,10 @@ import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [â•
  
 import { Shaders }  from "./builtin/shader-factory.js";
 import { Shape }    from "./builtin/shape-factory.js";
-import { systemColorRenderer } from "./color.js";
-import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render/index.js";
-import { builtin_rasterize, rasterize } from "./software-render/rasterizer.js";
+import { blit, builtin_blit } from "./driver/software-render/blit.js";
+import { ASCII }    from "./driver/software-render/index.js";
+import { builtin_rasterize, rasterize }                                    from "./driver/software-render/rasterizer.js";
+import { builtin_shadeVertices, shadeVertices } from "./driver/software-render/shader-engine.js";
 
 
 
@@ -66,7 +67,7 @@ const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP",
 const BLEND_MODE  = ["ADD", "SUBTRACT", "MULTIPLY", "NONE"];
 const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "UNICODE_RGBA", "UNICODE_RGBA_HDR"];
 
-export { ImageObject }         from "./image.js";
+export { ImageObject }         from "./builtin/image.js";
 export const Graphics = makeBuiltinHashmap([
     ["SURFACE_TOPOLOGY", SURFACE_TOPOLOGY],
     ["BLEND_MODE", makeBuiltinEnum(BLEND_MODE)],
@@ -81,7 +82,7 @@ export const Graphics = makeBuiltinHashmap([
 ]);
 
 
-export { systemColorRenderer } from "./color.js";
+export { systemColorRenderer } from "./builtin/color.js";
 
 export const Graphics_TS = {
     SURFACE_TOPOLOGY,
