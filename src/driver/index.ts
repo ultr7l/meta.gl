@@ -4,7 +4,7 @@
  ░░
  **/
 
-import { Visual } from "src/elements/visual";
+import { Visual } from "src/elements/visual.js";
 
 
 export interface GraphicsDriver<RenderTo> {

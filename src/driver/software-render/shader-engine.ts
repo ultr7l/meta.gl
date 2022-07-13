@@ -1,8 +1,7 @@
 import { VertexShader } from "../../index.js";
-import { ObjectType } from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum";
-import { distance2d } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util";
-import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object";
-import { colorRenderer } from ".";
+import { ObjectType } from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum.js";
+import { distance2d } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/2d/util.js";
+import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
 
 
 // TODO: re-design & refactor format of varyings

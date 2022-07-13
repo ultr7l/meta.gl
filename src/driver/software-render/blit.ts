@@ -1,6 +1,6 @@
 import { ObjectType } from "wrapt.co_re/dist/Domain [╍🌐╍🧭╍]/object/object-type.enum.js";
 import { _BuiltinFunctionObject } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
-import { colorRenderer } from "./index";
+import { colorRenderer } from "./index.js";
 
 export const builtin_blit = new _BuiltinFunctionObject(
     "blit", [ObjectType.ARRAY, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
