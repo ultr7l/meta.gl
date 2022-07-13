@@ -4,9 +4,11 @@
  ░░
  **/
 
+import { Visual } from "src/elements/visual";
 
-export interface GraphicsDriver {
 
+export interface GraphicsDriver<RenderTo> {
 
+    render(input: Visual): RenderTo;
 
 }
