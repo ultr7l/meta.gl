@@ -5,6 +5,9 @@ import { VertexShader } from "../..";
 import { ColorRendererFactory } from "../../builtin/color.js";
 import { GraphicsDriver } from "..";
 import { Visual } from "src/elements/visual";
+import { Camera } from "src/elements/camera";
+import { Light } from "src/elements/light";
+import { SoftwareRenderInitiationContext } from "./software.init-ctx";
 
 
 
@@ -25,9 +28,19 @@ export interface SoftwareFBO {
 
 }
 
-export class SoftwareRenderer implements GraphicsDriver<SoftwareFBO> {
+export class SoftwareRenderer implements GraphicsDriver<SoftwareFBO, SoftwareRenderInitiationContext> {
+
+    initializeContext(params: any): void {
+        throw new Error("Method not implemented.");
+    }
+
+    addToScene(object: Light | Camera | Visual): void {
+        throw new Error("Method not implemented.");
+    }
+
     render(input: Visual): SoftwareFBO {
 
         return null;
     }
+    
 }

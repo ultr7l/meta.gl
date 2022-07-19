@@ -1,3 +1,7 @@
 export class BabylonJSObject {
+    constructor() {
+    }
+    
+    
     
 }

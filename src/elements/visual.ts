@@ -25,14 +25,14 @@ export type VisualPrinciples = {
 
 /**
  * 
- *  Visual Concept
+ *  Visual element
  * 
  */
 export class Visual extends Concept<_CONCEPT[], VisualQualities> {
 
     id:   string;
-
     name: string = "Visual"; 
+    
     foundation = [] as _CONCEPT[];
     principles: VisualPrinciples = {
 

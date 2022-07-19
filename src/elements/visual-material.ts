@@ -3,6 +3,7 @@ import { VisualMaterialMaps } from "./visual-material-maps.js";
 
 /**
  * 
+ * Material, Visual Quality
  * 
  */
 export class VisualMaterial {
