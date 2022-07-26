@@ -1,7 +1,7 @@
 import { _CONCEPT } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/0_1_concept.type";
 import { Concept } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/1_0_concept";
 import { Identity_Matrix4, Matrix4 } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/matrix/matrix-4";
-import { Visual } from "./visual";
+import { Visual } from "./3_0_visual";
 
 export type Principle = (c: Concept<_CONCEPT[], { [name: string]: any; }>) => any;
 
@@ -24,7 +24,7 @@ export interface CameraPrinciples {
  */
 export class Camera extends Concept<_CONCEPT[], CameraQualities> {
    
-    
+    id:   string;
     name: string;
     
     foundation: _CONCEPT[] = [ 

@@ -1,13 +1,14 @@
 import { Identity_Matrix4, Matrix4 } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/maths/matrix/matrix-4.js"
-import { VisualMaterial } from "./visual-material.js";
-import { Concept } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/1_0_concept"
-import { _CONCEPT } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/0_1_concept.type";
+import { VisualMaterial } from "./3_2_visual-material.js";
+import { Concept } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/1_0_concept.js"
+import { _CONCEPT } from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/concept/0_1_concept.type.js";
+import { VertexBufferType } from "src/driver/vertex-buffer.type.js";
 
 export interface VisualQualities {
     
     Visual: {
         matrix: Matrix4;
-        mesh: [number, number, number][];
+        buffer: number[] | Float64Array;
 
         materials: VisualMaterial[];
         children:  Visual[];
@@ -28,7 +29,7 @@ export type VisualPrinciples = {
  *  Visual element
  * 
  */
-export class Visual extends Concept<_CONCEPT[], VisualQualities> {
+export class Visual extends Concept<_CONCEPT[], VisualQualities, VisualPrinciples> {
 
     id:   string;
     name: string = "Visual"; 
@@ -40,7 +41,7 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
     qualities:  VisualQualities  = { 
         Visual: {
             matrix: Identity_Matrix4,
-            mesh:      [],
+            buffer:      [],
             materials: [],
             children:  []
         },
@@ -50,8 +51,6 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
         }
     } as VisualQualities;
 
-    private visualQualities;
-
     
     constructor() {
         super();
@@ -59,7 +58,7 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
     }
 
     private setVisualQualities() {
-        this.visualQualities = this.qualities.Visual;
+        this.qualities.Visual = this.qualities.Visual;
     }
 
     public transform(previous?: Concept<_CONCEPT[]>): Concept<_CONCEPT[]> {
@@ -72,20 +71,20 @@ export class Visual extends Concept<_CONCEPT[], VisualQualities> {
     }
 
     public updateMatrix(matrix: Matrix4): Visual {
-        this.visualQualities.matrix = matrix;
-        // TODO: handle side-effects
+        this.qualities.Visual.matrix = matrix;
+        // TODO: handle side-effects ?
         return this;
     }
 
-    public updateMesh(mesh: any[]): Visual {
-        this.visualQualities.mesh = mesh;
-        // TODO: handle side-effects
+    public updateBuffer(bufferType: VertexBufferType, buffer: number[] | Float64Array): Visual {
+        this.qualities.Visual.buffer = buffer;
+        // TODO: ^^^ ?
         return this;
     }
 
     public updateMaterial(material: VisualMaterial, index: number): Visual {
-        this.visualQualities.materials[index] = material;
-        // TODO: handle side-effects
+        this.qualities.Visual.materials[index] = material;
+    
         return this;
     }
 }
