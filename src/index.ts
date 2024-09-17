@@ -3,11 +3,13 @@ import { ObjectType }                           from "wrapt.co_re/dist/Domain [�
 import { _BuiltinFunctionObject }                from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/object/1_0_1_object.js";
 import { makeBuiltinEnum, makeBuiltinHashmap }  from "wrapt.co_re/dist/Model [╍⬡╍ꙮ╍▦╍]/util/3_builtin_util.js";
  
-import { Shaders }  from "./builtin/shader-factory.js";
-import { Shape }    from "./builtin/shape-factory.js";
-import { systemColorRenderer } from "./color.js";
-import { ASCII, blit, builtin_blit, builtin_shadeVertices, shadeVertices } from "./software-render/index.js";
-import { builtin_rasterize, rasterize } from "./software-render/rasterizer.js";
+import { Shaders }  from "./driver/software-render/builtin/shader-factory.js";
+import { blit, builtin_blit } from "./driver/software-render/blit.js";
+import { ASCII }    from "./driver/software-render/index.js";
+import { builtin_rasterize, rasterize }                                    from "./driver/software-render/rasterizer.js";
+import { builtin_shadeVertices, shadeVertices } from "./driver/software-render/shader-engine.js";
+import { Shape } from "./driver/software-render/builtin/shape-factory.js";
+import { builtin_makeBuffer, makeBuffer } from "./driver/software-render/buffer.js";
 
 
 
@@ -31,42 +33,13 @@ export  type VertexShader = (
         ) => [number, number, number];
 
 
-function makeBuffer(mode: number, width: number, height: number) {
-    let elems = [];
-    
-    for (let y = 0; y < height; y++) {
-        if (mode == 0) { // 4 channel RGBA based
-            for (let x = 0; x < width; x++) {
-                elems.push(0, 0, 0, 0);
-            }
-        }
-        else { // ASCII
-            let rowEls = [];
-            for (let x = 0; x < width; x++) {
-                rowEls.push(" ");
-            }
-            elems.push(rowEls);
-        }
-    }
-    return elems;
-}
-
-export let builtin_makeBuffer = new _BuiltinFunctionObject(
-    "makeBuffer", [ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ, ObjectType.INTEGER_OBJ], 
-    (
-        scope: any, jsScope: any, 
-        mode: number, width: number, height: number
-    ) => makeBuffer(mode, width, height),
-    
-    undefined, undefined, undefined
-);
 
 
 const SURFACE_TOPOLOGY = makeBuiltinEnum(["TRIANGLE_LIST"] /*, "TRIANGLE_STRIP", "TRIANGLE_FAN", "QUAD"] */ );
 const BLEND_MODE  = ["ADD", "SUBTRACT", "MULTIPLY", "NONE"];
 const RASTER_MODE = ["PIXEL", "ASCII", "ANSI_COLOR", "UNICODE_RGBA", "UNICODE_RGBA_HDR"];
 
-export { ImageObject }         from "./image.js";
+export { ImageObject }         from "./builtin/image.js";
 export const Graphics = makeBuiltinHashmap([
     ["SURFACE_TOPOLOGY", SURFACE_TOPOLOGY],
     ["BLEND_MODE", makeBuiltinEnum(BLEND_MODE)],
@@ -81,7 +54,7 @@ export const Graphics = makeBuiltinHashmap([
 ]);
 
 
-export { systemColorRenderer } from "./color.js";
+export { systemColorRenderer } from "./builtin/color.js";
 
 export const Graphics_TS = {
     SURFACE_TOPOLOGY,

@@ -1,6 +1,6 @@
 {
     "name": "meta.gl",
-    "version": "0.1.21",
+    "version": "0.1.35",
     "type": "module",
     "description": "Hardware accelerated graphics language and un-parser",
     "scripts": {
@@ -32,11 +32,13 @@
     "homepage": "https://github.com/ultr7l/meta.gl/#readme",
     "devDependencies": {
         "@types/jest": "^27.4.1",
+        "babylonjs": "^5.15.1",
         "jest": "^27.5.1",
+        "three": "^0.142.0",
         "ts-jest": "^27.1.4",
         "typescript": "^4.5.2"
     },
     "dependencies": {
-        "wrapt.co_re": "^1.1.25"
+        "wrapt.co_re": "^1.1.74"
     }
 }
